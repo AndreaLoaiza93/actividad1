@@ -1,0 +1,37 @@
+name: Gestor de Clientes
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Obtener código del repositorio
+      uses: actions/checkout@v3
+    
+    - name: Listar archivos del repositorio
+      run: |
+        echo "Listando archivos en el directorio actual:"
+        ls -la
+    
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Crear cliente de prueba
+      run: |
+        echo -e "ClientePrueba\nServicio de prueba" | python gestor_clientes.py
+    
+    - name: Agregar servicio al cliente
+      run: |
+        echo -e "ClientePrueba\nServicio adicional" | python gestor_clientes.py
+    
+    - name: Buscar cliente
+      run: |
+        echo -e "ClientePrueba" | python gestor_clientes.py
