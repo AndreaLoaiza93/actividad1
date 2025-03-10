@@ -1,5 +1,4 @@
-- name: Obtener código del repositorio
-uses: actions/checkout@v3
+name: Gestor_clientes
 on:
   push:
     branches: [ main ]
